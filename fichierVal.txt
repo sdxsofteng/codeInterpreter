@@ -1,0 +1,24 @@
+abstrait
+classeDebut( C )
+
+classeDebut( D )
+attribut( String, a1 )
+attribut( String, a2 )
+
+classeDebut( E )
+methodeDebut( void, m1 )
+methodeFin
+
+abstrait
+methodeDebut( void, m2 )
+parametre( int, p1 )
+parametre( int, p2 )
+methodeFin
+classeFin
+
+classeFin
+
+classeDebut( F )
+classeFin
+
+classeFin
