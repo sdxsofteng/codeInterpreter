@@ -9,11 +9,6 @@ import java.util.Scanner;
  */
 public class Principale {
 
-    public static final String CLASSE_FIN = "classeFin";
-    public static final String METHODE_FIN = "methodeFin";
-    public static final String ABSTRAIT = "abstrait";
-
-
     public static void main(String[] args) {
         Scanner scannerFichier = demandeUtilisateur();
         AnalyseSyntaxeUtil analyse = new AnalyseSyntaxeUtil();
