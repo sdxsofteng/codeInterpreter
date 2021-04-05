@@ -16,6 +16,7 @@ public class Principale {
         ArrayList<ContexteInterpretation> interpreteurs = new ArrayList<>();
         ArrayDeque<Commande> commandesValidees;
         interpreteurs.add(new InterpreteurOrdre());
+        interpreteurs.add(new InterpreteurEcriture());
 
         Scanner scannerFichier = demandeUtilisateur();
         AnalyseSyntaxeUtil analyse = new AnalyseSyntaxeUtil();
