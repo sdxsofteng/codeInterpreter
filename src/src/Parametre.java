@@ -1,7 +1,5 @@
 public class Parametre extends Commande{
 
-    Commande precedent;
-    Commande suivant;
     String type;
     String nom;
 
@@ -10,21 +8,6 @@ public class Parametre extends Commande{
         this.nom = nom;
     }
 
-    public Commande getPrecedent() {
-        return precedent;
-    }
-
-    public void setPrecedent(Commande precedent) {
-        this.precedent = precedent;
-    }
-
-    public Commande getSuivant() {
-        return suivant;
-    }
-
-    public void setSuivant(Commande suivant) {
-        this.suivant = suivant;
-    }
 
     public String getType() {
         return type;

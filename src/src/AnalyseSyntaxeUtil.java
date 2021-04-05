@@ -16,17 +16,22 @@ public class AnalyseSyntaxeUtil {
     public AnalyseSyntaxeUtil(){}
 
     public void analyserSyntaxe(Scanner scannerFichier){
+        Commande commandePrecedente = null;
+
         scannerFichier.useDelimiter("\n");
         while( scannerFichier.hasNext() ){
             String ligne = scannerFichier.next().replaceAll("\\r", "");
             if (!ligne.isBlank()){
                 ligne = ligne.replaceAll(" ", "");
-                detecterPattern(ligne);
+                if (!commandesValidees.isEmpty()){
+                    commandePrecedente = commandesValidees.getLast();
+                }
+                traiterLigne(ligne, commandePrecedente);
             }
         }
     }
 
-    private void detecterPattern(String ligne){
+    private void traiterLigne(String ligne, Commande commandePrecedente){
 
         Scanner scannerLigne = new Scanner(ligne);
         scannerLigne.useDelimiter("\\(");
@@ -50,6 +55,11 @@ public class AnalyseSyntaxeUtil {
             commandesValidees.add(creerBinaire(nom, parametres));
         }else{
             Err.ERR_SYNTAXE.sortir();
+        }
+
+        if (commandesValidees.size() > 1){
+            commandePrecedente.setSuivant(commandesValidees.getLast());
+            commandesValidees.getLast().setPrecedent(commandePrecedente);
         }
     }
 
@@ -113,7 +123,7 @@ public class AnalyseSyntaxeUtil {
             scanIdentificateur.useDelimiter(",");
             identificateurs[0] = scanIdentificateur.next();
             scanIdentificateur.useDelimiter("\\)");
-            identificateurs[1] = scanIdentificateur.next();
+            identificateurs[1] = scanIdentificateur.next().replaceAll(",","");
         }
         return identificateurs;
     }
