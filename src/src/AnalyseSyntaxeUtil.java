@@ -15,7 +15,7 @@ public class AnalyseSyntaxeUtil {
 
     public AnalyseSyntaxeUtil(){}
 
-    public void analyserSyntaxe(Scanner scannerFichier){
+    public ArrayDeque<Commande> analyserSyntaxe(Scanner scannerFichier){
         Commande commandePrecedente = null;
 
         scannerFichier.useDelimiter("\n");
@@ -29,6 +29,8 @@ public class AnalyseSyntaxeUtil {
                 traiterLigne(ligne, commandePrecedente);
             }
         }
+
+        return commandesValidees;
     }
 
     private void traiterLigne(String ligne, Commande commandePrecedente){

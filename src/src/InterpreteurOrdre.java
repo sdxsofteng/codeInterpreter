@@ -5,6 +5,12 @@ public class InterpreteurOrdre implements ContexteInterpretation{
     boolean estAbstrait = false;
     int nbrOuverture = 0;
 
+    public void verificationFin(){
+        if(!(!estAbstrait && nbrOuverture == 0)){
+            Err.ERR_ORDRE.sortir();
+        }
+    }
+
     @Override
     public void genAbstrait(Abstrait abstrait) {
         if (!estAbstrait){

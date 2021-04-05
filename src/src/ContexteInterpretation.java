@@ -9,4 +9,5 @@ public interface ContexteInterpretation {
     void genAbstrait ( Abstrait abstrait);
     void genParametre( Parametre parametre);
     void genFinMethode( MethodeFin finMethode);
+    void verificationFin();
 }
