@@ -2,11 +2,11 @@
  *
  */
 public interface ContexteInterpretation {
-    void genDebutClasse( MotDebutClasse motDebutClasse);
-    void genFinClasse( MotFinClasse motFinClasse);
-    void genDebutMethode( MotDebutMethode motDebutMethode);
-    void genAttribut ( MotAttribut motAttribut);
-    void genAbstrait ( MotAbstrait motAbstrait);
-    void genParametre( MotParametre motParametre);
-    void genFinMethode( MotFinMethode motFinMethode);
+    void genDebutClasse( ClasseDebut classeDebut);
+    void genFinClasse( ClasseFin classeFin);
+    void genDebutMethode( MethodeDebut methodeDebut);
+    void genAttribut ( Attribut attribut);
+    void genAbstrait ( Abstrait abstrait);
+    void genParametre( Parametre parametre);
+    void genFinMethode( MethodeFin finMethode);
 }
