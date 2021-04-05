@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -10,11 +12,19 @@ import java.util.Scanner;
 public class Principale {
 
     public static void main(String[] args) {
+
+        ArrayList<ContexteInterpretation> interpreteurs = new ArrayList<>();
+        ArrayDeque<Commande> commandesValidees;
+        interpreteurs.add(new InterpreteurOrdre());
+
         Scanner scannerFichier = demandeUtilisateur();
         AnalyseSyntaxeUtil analyse = new AnalyseSyntaxeUtil();
-        analyse.analyserSyntaxe(scannerFichier);
+        commandesValidees = analyse.analyserSyntaxe(scannerFichier);
 
-
+        for ( ContexteInterpretation intepreteur : interpreteurs){
+            commandesValidees.forEach( x -> x.interprete(intepreteur));
+            intepreteur.verificationFin();
+        }
     }
 
     private static Scanner demandeUtilisateur(){
