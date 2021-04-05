@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -12,12 +11,16 @@ public class Principale {
 
     public static void main(String[] args) {
         Scanner scannerFichier = demandeUtilisateur();
+        AnalyseSyntaxeUtil analyse = new AnalyseSyntaxeUtil();
+        analyse.analyserSyntaxe(scannerFichier);
+
+
     }
 
-    public static Scanner demandeUtilisateur(){
+    private static Scanner demandeUtilisateur(){
 
         Scanner scPathFichier = new Scanner(System.in);
-        System.out.println(Texte.DMD_ENTREE_UTILISATEUR);
+        System.out.print(Texte.DMD_ENTREE_UTILISATEUR);
         String pathFichier = scPathFichier.next();
 
         Scanner scannerOut = null;
@@ -25,7 +28,7 @@ public class Principale {
             File fichierRetour = new File(pathFichier);
             scannerOut = new Scanner(fichierRetour);
         }catch (FileNotFoundException e){
-            Erreures erreurFichier = new Erreures(Texte.ERR_FICHIER_INTROUVABLE);
+            Err.ERR_ENTREE.sortir();
         }
         return scannerOut;
     }
