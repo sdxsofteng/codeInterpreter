@@ -17,6 +17,7 @@ public class Principale {
         ArrayDeque<Commande> commandesValidees;
         interpreteurs.add(new InterpreteurOrdre());
         interpreteurs.add(new InterpreteurEcriture());
+        interpreteurs.add(new InterpreteurUML());
 
         Scanner scannerFichier = demandeUtilisateur();
         AnalyseSyntaxeUtil analyse = new AnalyseSyntaxeUtil();
