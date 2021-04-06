@@ -1,7 +1,8 @@
 public enum Err {
     ERR_ENTREE("Fichier introuvable ou innaccessible!", -101),
     ERR_SYNTAXE("Il y a une erreur dans la syntaxe du fichier!", -102),
-    ERR_ORDRE("Il y a une erreure dans l'ordre des commandes.", -103)
+    ERR_ORDRE("Il y a une erreure dans l'ordre des commandes.", -103),
+    ERR_ECRITURE("Il y a une erreur dans l'ecriture des commandes", -104),
     ;
 
     private String message;
