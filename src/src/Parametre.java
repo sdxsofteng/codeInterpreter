@@ -1,5 +1,12 @@
+/**
+ * Cette classe représente la commande Paramètre
+ */
 public class Parametre extends Commande{
 
+    /**
+     * type: Type du paramètre
+     * nom: Nom du paramètre
+     */
     String type;
     String nom;
 
@@ -13,18 +20,14 @@ public class Parametre extends Commande{
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    /**
+     * Voir Expression
+     * @param contexte Interpréteur.
+     */
     @Override
     public void interprete(ContexteInterpretation contexte) {
         contexte.genParametre(this);

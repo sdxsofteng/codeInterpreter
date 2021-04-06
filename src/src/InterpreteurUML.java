@@ -2,9 +2,21 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Stack;
-
+/**
+ * Cette classe represente le troisieme et dernier interpreteur. Cet interpreteur prend la liste de Commande et la
+ * transforme en un fichier en format UML qui permet de representer graphiquement le programme.
+ * La javadoc pour les methodes est minime. Seule les clarifications necessaires sont incluses, sinon, les etapes
+ * realisees sont celles inscrites dans l'enonce.
+ * Les phrases utilisees pour l'ecriture sont dans la @class DescriptionLatex14
+ */
 public class InterpreteurUML implements ContexteInterpretation{
 
+    /**
+     * PATH_FICHIER_UML: path du fichier uml que l'on va creer.
+     * pileEtat: Pile des etats qui permet de garder en memoire les modifications sur les fichier
+     * fichierUML: Fichier creer pour contenir le code LaTeX
+     * writerUML: writer unique pour ecrire dans le fichierUML
+     */
     public final String PATH_FICHIER_UML = "uml.tex";
 
     int nbrClasse = 0;
@@ -14,6 +26,9 @@ public class InterpreteurUML implements ContexteInterpretation{
     File fichierUML;
     FileWriter writerUML;
 
+    /**
+     * Des la creation de l'interpreteur, on creer tous de suite le Fichier, le FileWriter.
+     */
     public InterpreteurUML() {
         fichierUML = new File(PATH_FICHIER_UML);
         try {
@@ -23,11 +38,20 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Maintien l'etat interne, est utiliser dans les autres fonctions.
+     * @param abstrait Abstrait en cours d'ecriture
+     */
     @Override
     public void genAbstrait(Abstrait abstrait) {
         estAbstrait = true;
     }
 
+    /**
+     * Si le compteur de classe est == 0, on ecrit les lignes requises pour commencer un ficheir LaTeX. Ensuite
+     * on met un nouvel Etat pour la classe sur le Stack, on ecrit ensuite les phrases requises selon l'etat interne
+     * @param classeDebut ClasseDebut en cours d'ecriture
+     */
     @Override
     public void genDebutClasse(ClasseDebut classeDebut) {
         try {
@@ -53,6 +77,11 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Sous-programme de genClasseDebut qui permet d'ecrire certaines phrases precises si l'on est a la premiere classe
+     * de l'Etat courant.
+     * @throws IOException lance l'exception qui est catcher dans le sur-programme genDebutClasse
+     */
     private void genererDebutClasse() throws IOException {
         if (pileEtat.peek().isPremiereClasse()) {
             writerUML.write(DescriptionLatex14.CLASSE_FIN);
@@ -64,6 +93,10 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Diminue le nombre de classe, ecrit les phrases appropriees dans le fichier et enleve l'etat de la pile.
+     * @param classeFin ClasseFin en cours d'ecriture.
+     */
     @Override
     public void genFinClasse(ClasseFin classeFin) {
         nbrClasse--;
@@ -83,10 +116,14 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Ecrit les commandes appropriees dans le fichier. Manipulation speciale si c'est le premier Attribut
+     * @param attribut Attribut en cours d'ecriture
+     */
     @Override
     public void genAttribut(Attribut attribut) {
         try {
-            if (pileEtat.peek().premierAttribut) {
+            if (pileEtat.peek().isPremierAttribut()) {
                 writerUML.write(DescriptionLatex14.LISTE_ATTRIBUT_DEBUT);
                 pileEtat.peek().setPremierAttribut(false);
             }else {
@@ -98,6 +135,10 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Ecrit les phrases appropries dans le fichier. Manipulations speciales si c'est la premiere methode du fichier.
+     * @param methodeDebut MethodeDebut en cours d'ecriture
+     */
     @Override
     public void genDebutMethode(MethodeDebut methodeDebut) {
         try{
@@ -121,6 +162,10 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Ecrit les phrases appropries pour Parametre selon l'etat interne
+     * @param parametre Parametre en cours d'ecriture
+     */
     @Override
     public void genParametre(Parametre parametre) {
         try {
@@ -135,6 +180,10 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Ecrit les phrases appropries pour FinMethode selon l'etatInterne
+     * @param finMethode FinMethode en cours d'ecriture
+     */
     @Override
     public void genFinMethode(MethodeFin finMethode) {
         try {
@@ -148,6 +197,9 @@ public class InterpreteurUML implements ContexteInterpretation{
         }
     }
 
+    /**
+     * Ferme le FileWriter etant donner que toute l'ecriture est faite.
+     */
     @Override
     public void verificationFin() {
         try {

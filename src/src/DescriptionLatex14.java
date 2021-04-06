@@ -1,3 +1,6 @@
+/**
+ * Classe de constantes permettant d'écrire le fichier LaTeX.
+ */
 public class DescriptionLatex14 {
     public static final String FICHIER_DEBUT =
             """

@@ -1,6 +1,12 @@
+/**
+ * Cette Classe représente la Commande Classe Début
+ */
 public class ClasseDebut extends Commande{
 
-    private String nomDeLaClasse;
+    /**
+     * Nom que l'on veut donner à la classe
+     */
+    private final String nomDeLaClasse;
 
     public ClasseDebut(String nomDeLaClasse) {
         this.nomDeLaClasse = nomDeLaClasse;
@@ -10,10 +16,10 @@ public class ClasseDebut extends Commande{
         return nomDeLaClasse;
     }
 
-    public void setNomDeLaClasse(String nomDeLaClasse) {
-        this.nomDeLaClasse = nomDeLaClasse;
-    }
-
+    /**
+     * Voir Expression
+     * @param contexte Interpréteur.
+     */
     @Override
     public void interprete(ContexteInterpretation contexte) {
         contexte.genDebutClasse(this);
