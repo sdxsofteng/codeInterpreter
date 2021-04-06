@@ -91,11 +91,12 @@ public class InterpreteurEcriture implements ContexteInterpretation{
         String type = attribut.getType();
         String nom = attribut.getNom();
         try {
+            String nomGetSet = nom.substring(0,1).toUpperCase() + nom.substring(1);
             writerCourant.write(String.format("    private %s %s ;\n\n", type, nom));
             writerCourant.write(String.format("    public %s get%s(){\n        return %s ;\n    " +
-                    "}\n\n", type, nom, nom));
-            writerCourant.write(String.format("    public void set%s ( %s, %s){\n        this.%s = %s ;\n    }\n\n",
-                    nom, type, nom, nom, nom));
+                    "}\n\n", type, nomGetSet, nom));
+            writerCourant.write(String.format("    public void set%s( %s, %s ){\n        this.%s = %s ;\n    }\n\n",
+                    nomGetSet, type, nom, nom, nom));
         } catch (IOException e){
             Err.ERR_ECRITURE.sortir();
         }
@@ -115,7 +116,7 @@ public class InterpreteurEcriture implements ContexteInterpretation{
             if (estAbstrait){
                 writerCourant.write("abstract ");
             }
-            writerCourant.write(String.format("%s %s (", type, nom));
+            writerCourant.write(String.format("%s %s( ", type, nom));
             estPremierParametre = true;
         }catch (IOException e){
             Err.ERR_ECRITURE.sortir();
@@ -135,7 +136,7 @@ public class InterpreteurEcriture implements ContexteInterpretation{
             if(!estPremierParametre){
                 writerCourant.write(", ");
             }
-            writerCourant.write(String.format("%s %s", type, nom));
+            writerCourant.write(String.format("%s %s ", type, nom));
             estPremierParametre = false;
         }catch (IOException e){
             Err.ERR_ECRITURE.sortir();
@@ -154,7 +155,7 @@ public class InterpreteurEcriture implements ContexteInterpretation{
             if (estAbstrait){
                 writerCourant.write(";\n");
             }else {
-                writerCourant.write("{\n    }\n");
+                writerCourant.write(" {\n    }\n");
             }
             estAbstrait = false;
         }catch (IOException e){

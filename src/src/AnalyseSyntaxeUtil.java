@@ -19,7 +19,7 @@ public class AnalyseSyntaxeUtil {
 
     /**
      * On met nos commandes validées dans le ArrayDeque pour un usage futur.
-     * J'aurais pu utiliser un ArrayList et ça aurait fonctionné mais je voulais essayer ArrayDeque.
+     * Un ArrayList aurait fonctionné mais un ArrayDeque a ete utiliser pour fin d'apprentissage de la classe.
      */
     ArrayDeque<Commande> commandesValidees = new ArrayDeque<>();
 
