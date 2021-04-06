@@ -1,5 +1,11 @@
+/**
+ * Cette classe représente la Commande méthode début
+ */
 public class MethodeDebut extends Commande{
-
+    /**
+     * type: Type de retour de la méthode
+     * nom: Nom de la méthode.
+     */
     String type;
     String nom;
 
@@ -12,18 +18,14 @@ public class MethodeDebut extends Commande{
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    /**
+     * Voir Expression
+     * @param contexte Interpréteur.
+     */
     @Override
     public void interprete(ContexteInterpretation contexte) {
         contexte.genDebutMethode(this);

@@ -1,5 +1,12 @@
+/**
+ * Représente la commande Attribut
+ */
 public class Attribut extends Commande{
 
+    /**
+     * type: Type de l'attribut
+     * nom: Nom que l'on veut donner à l'attribut
+     */
     String type;
     String nom;
 
@@ -12,18 +19,14 @@ public class Attribut extends Commande{
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    /**
+     * Voir Expression
+     * @param contexte Interpréteur.
+     */
     @Override
     public void interprete(ContexteInterpretation contexte) {
         contexte.genAttribut(this);

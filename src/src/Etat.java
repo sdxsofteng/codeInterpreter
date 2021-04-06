@@ -1,3 +1,8 @@
+/**
+ * Cette classe représente des États pour l'écriture du fichier LaTeX
+ * Permet de déterminer l'état de certaines commandes et d'écrire les commande LaTeX appropriées.
+ * Trois booleans permettent de déterminer l'état pour l'interpréteur UML
+ */
 public class Etat {
 
     public boolean premierAttribut = true;
@@ -5,12 +10,6 @@ public class Etat {
     public boolean premiereClasse = true;
 
     public Etat() {}
-
-    public Etat(boolean premierAttribut, boolean premiereMethode, boolean premiereClasse) {
-        this.premierAttribut = premierAttribut;
-        this.premiereMethode = premiereMethode;
-        this.premiereClasse = premiereClasse;
-    }
 
     public boolean isPremierAttribut() {
         return premierAttribut;
