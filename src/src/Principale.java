@@ -7,10 +7,22 @@ import java.util.Scanner;
 /**
  * Nom: Simon Desormeaux
  * Code Permanent: DESS21079605
- * @version TODO
+ * @version 06-04-2021
+ *
+ * Cette classe représente la classe Principale de notre programme. C'est ici que nous éxécutons toutes les étapes
+ * globales du projet d'interpréteur de code.
  */
 public class Principale {
 
+    public static String DMD_ENTREE_UTILISATEUR = "Veuillez entrez le path du fichier a interpreter: ";
+
+    /**
+     * La logique du main est bien simple, nous demandons tous d'abord à l'utlisateur d'entrer le path du fichier
+     * qui sera interprété. Ensuite, on analyse le fichier pour vérifier que la syntaxe est correcte. On retourne
+     * ensuite un ArrayDeque de Commandes. On prend chaque interpreteur et on interprète chacune des commandes
+     * une fois par interpréteur.
+     * @param args X N/A
+     */
     public static void main(String[] args) {
 
         ArrayList<ContexteInterpretation> interpreteurs = new ArrayList<>();
@@ -29,10 +41,14 @@ public class Principale {
         }
     }
 
+    /**
+     * Méthode pour faire la demande à l'utilisateur.
+     * @return un scanner qui contient le fichier en entier.
+     */
     private static Scanner demandeUtilisateur(){
 
         Scanner scPathFichier = new Scanner(System.in);
-        System.out.print(Texte.DMD_ENTREE_UTILISATEUR);
+        System.out.print(DMD_ENTREE_UTILISATEUR);
         String pathFichier = scPathFichier.next();
 
         Scanner scannerOut = null;
