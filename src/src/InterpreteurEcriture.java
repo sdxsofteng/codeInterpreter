@@ -31,7 +31,7 @@ public class InterpreteurEcriture implements ContexteInterpretation{
             }
             writerCourant.write(String.format("classe %s ", nom));
             if (pileNoms.size() > 1){
-                writerCourant.write(String.format("extends %s {\n", pileNoms.get(1)));
+                writerCourant.write(String.format("extends %s {\n", pileNoms.get(pileNoms.size() - 2)));
             }else {
                 writerCourant.write("{\n");
             }
